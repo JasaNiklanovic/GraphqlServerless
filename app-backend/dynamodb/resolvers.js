@@ -1,7 +1,14 @@
 // add to handler.js
-import dynamodb from 'serverless-dynamodb-client';
+// import dynamodb from 'serverless-dynamodb-client';
+const AWS = require('aws-sdk');
+const fs = require('fs');
 
-const docClient = dynamodb.doc; // return an instance of new AWS.DynamoDB.DocumentClient()
+const docClient = new AWS.DynamoDB.DocumentClient({
+  region: 'us-east-1',
+  endpoint: 'http://localhost:8000',
+  accessKeyId: 'bogusaccesskeyid',
+  secretAccessKey: 'bogussecretaccesskey',
+});
 
 // add to handler.js
 const promisify = foo =>
@@ -31,6 +38,8 @@ const twitterEndpoint = {
     ).then(result => {
       const tweets = [];
       let listOfTweets;
+
+      console.log(result, 'result');
 
       if (result.Items.length >= 1) {
         listOfTweets = {

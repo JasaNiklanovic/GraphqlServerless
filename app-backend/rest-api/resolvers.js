@@ -65,11 +65,21 @@ const twitterEndpoint = {
       })
       .catch(error => error);
   },
+
+  createTweet(args) {
+    return {
+      tweet: args.text,
+    };
+  },
 };
 
 // eslint-disable-next-line import/prefer-default-export
 export const resolvers = {
   Query: {
     getTwitterFeed: (root, args) => twitterEndpoint.getRawTweets(args),
+  },
+
+  Mutation: {
+    createTweet: (root, args) => twitterEndpoint.createTweet(args),
   },
 };

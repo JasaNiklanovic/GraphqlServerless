@@ -17,7 +17,13 @@ type Tweet {
 #returns list of Tweets
 type Query {
   getTwitterFeed(handle: String!, consumer_key: String!, consumer_secret: String!) : Tweets
-}`;
+}
+
+#example mutation
+type Mutation {
+  createTweet(text: String!) : Tweet
+}
+`;
 
 // eslint-disable-next-line import/prefer-default-export
 export { schema };
